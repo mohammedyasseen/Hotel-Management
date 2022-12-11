@@ -30,6 +30,28 @@ namespace ClassLibrary1
             outDate= outdate;
         }
 
+        /*public List<Guest> GetGuests()
+        {
+            Console.WriteLine("Enter the number of guests");
+
+            int guestnumb = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < guestnumb; i++)
+            {
+                Guest guest = new Guest();
+
+                Console.WriteLine("Enter the name for guest " + (i + 1));
+
+                guest.Name = Console.ReadLine();
+
+                Console.WriteLine("Enter the phone number for guest " + (i + 1));
+
+                guest.PhoneNumber = Console.ReadLine();
+
+                GuestList.Add(guest);
+            }
+            return GuestList;
+        } */
 
 
         // list guests for specific reservation

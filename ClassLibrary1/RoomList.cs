@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace ClassLibrary1
 {
@@ -31,6 +32,89 @@ namespace ClassLibrary1
                     Console.WriteLine(" Room " + "#" + (i+1) + " Type: " + RoomStore[i].Type + "  Price: $" + RoomStore[i].Price + "  ID: " + RoomStore[i].Id);
                 }
             
+        }
+
+        public void AddRoom()
+        {
+            Room newRoom = new Room();
+
+            // user choose room type
+            string[] type = { "Single", "Double" };
+            while (newRoom.Type == "No Entry")
+            {
+
+                Console.WriteLine(" What is the room Type:\n 1- Single \n 2- Double");
+
+                try
+                {
+                    newRoom.Type = type[int.Parse(Console.ReadLine()) - 1];
+                }
+                catch (Exception ex)
+                {
+                    if (ex is FormatException || ex is IndexOutOfRangeException)
+                    {
+                        Console.WriteLine("Invalid input");
+                    }
+                }
+
+
+            }
+            // user input room price
+
+            while (newRoom.Price == 0.00)
+            {
+                Console.WriteLine(" What is the room price?");
+                try
+                {
+
+                    newRoom.Price = double.Parse(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid input");
+                }
+            }
+            Console.WriteLine("What is the room ID?");
+
+
+            // user input room ID
+            newRoom.Id = Console.ReadLine();
+
+            RoomStore.Add(newRoom);
+            RoomAvailable.Add(newRoom);
+        }
+
+
+
+        // delete room
+        public void DeleteRoom()
+        {
+            int roomchos;
+            while (true)
+            {
+
+                Console.WriteLine("Choose Room");
+                display();
+
+                try
+                {
+                    roomchos = int.Parse(Console.ReadLine()) - 1;
+                    RoomStore.RemoveAt(roomchos);
+                    RoomAvailable.RemoveAt(roomchos);
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    if (ex is FormatException || ex is IndexOutOfRangeException)
+                    {
+                        Console.WriteLine("Invalid input");
+                    }
+                }
+
+
+
+
+            }
         }
 
         // List available rooms

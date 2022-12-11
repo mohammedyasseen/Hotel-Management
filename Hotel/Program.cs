@@ -21,82 +21,12 @@ namespace Hotel
                 {
                     case 1:
                         // add new room
-                        Room newRoom = new Room();
-
-                        // user choose room type
-                        string[] type = {"Single", "Double"} ;
-                        while (newRoom.Type=="No Entry")
-                        {
-
-                            Console.WriteLine(" What is the room Type:\n 1- Single \n 2- Double");
-
-                            try
-                            {
-                                newRoom.Type = type[int.Parse(Console.ReadLine()) - 1];
-                            }
-                            catch (Exception ex)
-                            {
-                                if (ex is FormatException || ex is IndexOutOfRangeException)
-                                {
-                                    Console.WriteLine("Invalid input");
-                                }
-                            }
-
-
-                        }
-                        // user input room price
-
-                        while (newRoom.Price == 0.00)
-                        {
-                            Console.WriteLine(" What is the room price?");
-                            try
-                            {
-                               
-                             newRoom.Price = double.Parse(Console.ReadLine());
-                            }
-                            catch (FormatException)
-                            {
-                                Console.WriteLine("Invalid input");
-                            }
-                            }
-                            Console.WriteLine("What is the room ID?");
-
-                        
-                        // user input room ID
-                        newRoom.Id = Console.ReadLine();
-
-                        store.RoomStore.Add(newRoom);
-                        store.RoomAvailable.Add(newRoom);
+                        store.AddRoom();
                         break;
 
                     case 2:
                         //delete room
-                        int roomchos;
-                        while (true)
-                        {
-
-                            Console.WriteLine("Choose Room");
-                            store.display();
-
-                            try
-                            {
-                                roomchos = int.Parse(Console.ReadLine())-1;
-                                store.RoomStore.RemoveAt(roomchos);
-                                store.RoomAvailable.RemoveAt(roomchos);
-                                break;
-                            }
-                            catch (Exception ex)
-                            {
-                                if (ex is FormatException || ex is IndexOutOfRangeException)
-                                {
-                                    Console.WriteLine("Invalid input");
-                                }
-                            }
-
-
-
-
-                        }
+                        store.DeleteRoom();
 
                         break;
 
